@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  # food_items
+  resources :food_items
+
   # users
   root 'users#index'
   resources :users, only: [:new, :index, :create]

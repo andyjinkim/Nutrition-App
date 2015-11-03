@@ -2,7 +2,7 @@
   <div class="hometext">
       <h1>Welcome to NutriStore!</h1>
     <% if logged_in? %>
-      Nice to see you again, <% @users.each do |user| %><%= user.email %><% end %>!
+      Nice to see you again, <%= current_user.email %>!
     <% else %>
       Log in to get started!
     <% end %>
