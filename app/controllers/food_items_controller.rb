@@ -6,7 +6,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    @fooditem = FoodItem.find(params[:id])
+    @fooditems = FoodItem.find(params[:id])
   end
 
   def new
@@ -63,6 +63,6 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def fooditem_params
-        params.require(:fooditem).permit(:title, :description, :price, :city, pictures_attributes: [:url, :alt])
+        params.require(:food_item).permit(:title, :description, :price, :city, pictures_attributes: [:url, :alt])
       end
   end
