@@ -1,2 +1,7 @@
-<h1>This is going to be the user's page<h1>
-<h1><%= @user.name %></h1>
+<div>
+<% if logged_in? %>
+  Nice to see you again, <%= current_user.name %>!
+<% else %>
+  Log in to get started!
+<% end %>
+</div>

@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>NutritionApp</title>
+  <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -22,14 +23,15 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/ ">Home</a>
+        <a href="/"><button type="button" class="btn btn-default btn-sm" id="glyph">
+          <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+        </button></a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/users/1">User Profile <span class="sr-only">(current)</span></a></li>
-          <li><a href="#">Link</a></li>
+          <li><a href="/users/1">User Profile <span class="sr-only">(current)</span></a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
@@ -50,7 +52,12 @@
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+          <li><%= link_to 'Sign Up!', users_new_path %></li>
+          <% if logged_in? %>
+            <li><%= link_to 'Log Out', logout_path, method: "delete" %></li>
+          <% else %>
+            <li><%= link_to 'Log In', login_path %></li>
+          <% end %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
