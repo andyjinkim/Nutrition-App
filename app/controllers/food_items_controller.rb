@@ -2,7 +2,7 @@ class FoodItemsController < ApplicationController
 before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fooditems = FoodItems.all
+    @fooditems = FoodItem.all
   end
 
   def show
@@ -18,15 +18,16 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-      @fooditem = FoodItem.new(fooditem_params)
+      @fooditem = FoodItem.new(food_item_params)
+      @fooditem.save
 
       respond_to do |format|
         if @fooditem.save
           format.html { redirect_to @fooditem, notice: 'Food item was successfully created.' }
-          format.json { render :show, status: :created, location: @fooditem }
+          # format.json { render :show, status: :created, location: @fooditem }
         else
           format.html { render :new }
-          format.json { render json: @fooditem.errors, status: :unprocessable_entity }
+          # format.json { render json: @fooditem.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -35,7 +36,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
     # PATCH/PUT /products/1.json
     def update
       respond_to do |format|
-        if @fooditem.update(fooditem_params)
+        if @fooditem.update(food_item_params)
           format.html { redirect_to @fooditem, notice: 'Food item was successfully updated.' }
           format.json { render :show, status: :ok, location: @fooditem }
         else
@@ -51,7 +52,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
       @fooditem.destroy
       respond_to do |format|
         format.html { redirect_to fooditems_url, notice: 'Food item was successfully destroyed.' }
-        format.json { head :no_content }
+        # format.json { head :no_content }
       end
     end
 
@@ -62,7 +63,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
-      def fooditem_params
-        params.require(:food_item).permit(:title, :description, :price, :city, pictures_attributes: [:url, :alt])
+      def food_item_params
+        params.require(:food_item).permit(:name, :calories, :sugar, :sodium, :protein)
       end
-  end
+    end

@@ -1,2 +1,17 @@
-<h1>FoodItems#index</h1>
-<p>Find me in app/views/food_items/index.html.erb</p>
+<h1>Food Item Index</h1>
+<p>Date: <input type="text" id="datepicker"></p>
+<script>
+$(function() {
+  $('#datepicker').datepicker();
+});
+</script>
+
+<% @fooditems.each do |food| %>
+<%= food.name %>
+<ul>
+  <li><%= food.calories %> calories</li>
+  <li><%= food.sugar %> grams</li>
+  <li><%= food.sodium %> mg</li>
+  <li><%= food.protein %> g</li>
+</ul>
+<% end %>
