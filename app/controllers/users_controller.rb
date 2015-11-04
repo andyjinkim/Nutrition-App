@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   private
 #only allow whitelisted fields to be populated and passed
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]

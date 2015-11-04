@@ -2,7 +2,8 @@ class FoodItemsController < ApplicationController
 before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fooditems = FoodItem.all
+    @user = current_user
+    @fooditems = @user.food_items.all
   end
 
   def show
@@ -18,19 +19,15 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
   end
 
   def create
-      @fooditem = FoodItem.new(food_item_params)
-      @fooditem.save
-
-      respond_to do |format|
-        if @fooditem.save
-          format.html { redirect_to @fooditem, notice: 'Food item was successfully created.' }
-          # format.json { render :show, status: :created, location: @fooditem }
-        else
-          format.html { render :new }
-          # format.json { render json: @fooditem.errors, status: :unprocessable_entity }
-        end
-      end
+    @user = current_user
+    @fooditem = @user.food_items.new(food_item_params)
+    @fooditem.user_id = @user.id
+    if @fooditem.save
+      redirect_to food_item_path(@fooditem)
+    else
+      render 'new'
     end
+  end
 
     # PATCH/PUT /products/1
     # PATCH/PUT /products/1.json

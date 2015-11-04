@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id.to_s
     redirect_to root_path
   else
-   flash.now.alert = "invalid login credentials"
+   flash.now.alert = "Invalid login credentials"
    render "new"
   end
  end
 
  def destroy
   session[:user_id] = nil
-  redirect_to root_url, notice: "logged out!"
+  redirect_to root_url, notice: "Logged out!"
  end
 
 end

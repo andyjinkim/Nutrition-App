@@ -1,17 +1,21 @@
 <h1>Food Item Index</h1>
 <p>Date: <input type="text" id="datepicker"></p>
+<%= button_to 'Go To Date', food_items_path %>
+
 <script>
 $(function() {
   $('#datepicker').datepicker();
 });
 </script>
 
-<% @fooditems.each do |food| %>
-<%= food.name %>
-<ul>
-  <li><%= food.calories %> calories</li>
-  <li><%= food.sugar %> grams</li>
-  <li><%= food.sodium %> mg</li>
-  <li><%= food.protein %> g</li>
-</ul>
+<% if current_user %>
+  <% @fooditems.each do |food| %>
+  <%= food.name.titleize %>
+  <ul>
+    <li><%= food.calories %> calories</li>
+    <li><%= food.sugar %> grams</li>
+    <li><%= food.sodium %> mg</li>
+    <li><%= food.protein %> g</li>
+  </ul>
+  <% end %>
 <% end %>

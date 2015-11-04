@@ -1,10 +1,10 @@
 <div class="homepage">
-  <div class="hometext">
+  <div class="home">
       <h1>Welcome to NutriStore!</h1>
     <% if logged_in? %>
-      Nice to see you again, <%= current_user.email %>!
+      Nice to see you again, <%= current_user.name.titleize %>!
     <% else %>
-      Log in to get started!
+      <%= link_to 'Log in', login_path %> to get started!
     <% end %>
   </div>
 </div>
@@ -19,11 +19,18 @@
   </div>
   <div class="col-md-4">
     <h3><span class="glyphicon glyphicon-sunglasses"></span> So cool</h3>
-    Using our app is cool. You want to be cool, don't you?
+    Using our app is cool. Super cool. Like, only cool people use it. You want to be cool, don't you?
   </div>
 </div>
-<div>
-  <img src="http://i.imgur.com/U9AZN1N.png" class="eddie img-circle">
-  <h4 class="description">"NutriStore really works! I was having trouble attracting girls because I was massively overweight and had a terrible personality. Now I just have a terrible personality. Thanks, NutriStore!"</h4><br>
-  <h4 class="center">- Eddie Jung</h4>
+<div class="row">
+  <div class="col-md-6">
+    <img src="http://i.imgur.com/U9AZN1N.png" class="eddie img-circle">
+    <h4 class="description">"NutriStore really works! I was having trouble attracting girls because I was massively overweight and had a terrible personality. Now I just have a terrible personality. Thanks, NutriStore!"</h4><br>
+    <h4 class="center">- Eddie Jung</h4>
+  </div>
+  <div class="col-md-6">
+    <img src="http://imgur.com/qgrgpZh.png" class="phil img-circle">
+    <h4 class="description">"I took on NutriStore because I needed to gain weight but I just ended up staying skinny. My mom said that was a success so.."</h4><br>
+    <h4 class="center">- Philippe Luchansky</h4>
+  </div>
 </div>
