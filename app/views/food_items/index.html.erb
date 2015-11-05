@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-md-4">
     <%= form_tag("/food_items", method: "get") do %>
-      <div style='color:white'><%= label_tag(:q, "Filter food items by date:") %></div>
+      <div style='color:white'><%= label_tag("Filter food items by date:") %></div>
       <div style='color:black'><%= date_field_tag :q, id: 'datepicker' %></div>
       <%= submit_tag("Search") %>
     <% end %>
@@ -15,13 +15,13 @@
           <% @fooditems.each do |food| %>
           <div style="color:white"><%= food.name.titleize %></div>
           <ul style="color:white">
-            <li><%= food.calories %> calories</li>
-            <li><%= food.sugar %> grams</li>
-            <li><%= food.sodium %> mg</li>
-            <li><%= food.protein %> g</li>
-            <li><%= food.date_consumed %></li>
+            <li>Calories: <%= food.calories %></li>
+            <li>Sugar: <%= food.sugar %> grams</li>
+            <li>Sodium: <%= food.sodium %> mg</li>
+            <li>Protein: <%= food.protein %> g</li>
+            <li>Date Consumed: <%= food.date_consumed %></li>
           </ul>
-          <%= link_to 'Delete Item', food, method: :delete %>
+          <%= button_to 'Delete Item', food, method: :delete, data: {confirm: "Are you sure?"} %>
           <% end %>
         <% end %>
       </div>
