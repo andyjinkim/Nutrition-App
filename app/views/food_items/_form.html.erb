@@ -11,27 +11,33 @@
     </div>
   <% end %>
 
+<div style='color:white'>
   <div class="field">
     <%= f.label :Food_Item %><br>
-    <%= f.text_field :name %>
+    <div style='color:black'><%= f.text_field :name %></div>
   </div>
   <div class="field">
     <%= f.label :calories %><br>
-    <%= f.number_field :calories %>
+    <div style='color:black'><%= f.number_field :calories %></div>
   </div>
   <div class="field">
     <%= f.label :sugar %><br>
-    <%= f.number_field :sugar, :placeholder => "in grams" %>
+    <div style='color:black'><%= f.number_field :sugar, :step => 0.1, :placeholder => "in grams" %></div>
   </div>
   <div class="field">
     <%= f.label :sodium %><br>
-    <%= f.number_field :sodium, :placeholder => "in milligrams" %>
+    <div style='color:black'><%= f.number_field :sodium, :step => 0.1, :placeholder => "in milligrams" %></div>
   </div>
   <div class="field">
     <%= f.label :protein %><br>
-    <%= f.number_field :protein, :placeholder => "in grams" %>
+    <div style='color:black'><%= f.number_field :protein, :step => 0.1, :placeholder => "in grams" %></div>
+  </div>
+  <div class="field">
+    <%= f.label :consumed_date %><br>
+    <div style='color:black'><%= f.date_field :consumed_date, id: 'datepicker' %></div>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
 <% end %>

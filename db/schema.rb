@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151103212014) do
+ActiveRecord::Schema.define(version: 20151105014731) do
 
   create_table "food_items", force: :cascade do |t|
     t.string   "name"
     t.integer  "calories"
-    t.integer  "sugar"
-    t.integer  "sodium"
-    t.integer  "protein"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.float    "sugar"
+    t.float    "sodium"
+    t.float    "protein"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "user_id"
+    t.date     "consumed_date"
   end
 
   add_index "food_items", ["user_id"], name: "index_food_items_on_user_id"

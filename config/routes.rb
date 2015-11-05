@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  # food_items
-  # delete 'food_items' => 'food_items#destroy' as: :delete
+  # food items
   resources :food_items
 
   # users

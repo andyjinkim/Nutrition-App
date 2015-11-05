@@ -3,7 +3,12 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = current_user
-    @fooditems = @user.food_items.all
+    Rails.logger.debug params[:q]
+    if params[:q]
+     @fooditems = @user.food_items.where(:consumed_date => params[:q].to_date)
+   else
+     @fooditems = @user.food_items.all
+   end
   end
 
   def show
@@ -23,7 +28,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
     @fooditem = @user.food_items.new(food_item_params)
     @fooditem.user_id = @user.id
     if @fooditem.save
-      redirect_to food_item_path(@fooditem)
+      redirect_to food_items_path
     else
       render 'new'
     end
@@ -43,13 +48,12 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
       end
     end
 
-    # DELETE /products/1
-    # DELETE /products/1.json
     def destroy
-      @fooditem.destroy
-      respond_to do |format|
-        format.html { redirect_to fooditems_url, notice: 'Food item was successfully destroyed.' }
-        # format.json { head :no_content }
+      @fooditem = FoodItem.find(params[:id])
+      if @fooditem.destroy
+        redirect_to food_items_path
+      else
+        render 'index'
       end
     end
 
@@ -61,6 +65,6 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def food_item_params
-        params.require(:food_item).permit(:name, :calories, :sugar, :sodium, :protein)
+        params.require(:food_item).permit(:name, :calories, :sugar, :sodium, :protein, :consumed_date)
       end
     end

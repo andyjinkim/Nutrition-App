@@ -1,21 +1,32 @@
-<h1>Food Item Index</h1>
-<p>Date: <input type="text" id="datepicker"></p>
-<%= button_to 'Go To Date', food_items_path %>
+<div class="homepage">
+  <div style="margin-left:50px;padding-top:20px;font-family:'Varela Round', sans-serif">
+    <h1 style="color:white">Food Item Index</h1>
 
-<script>
-$(function() {
-  $('#datepicker').datepicker();
-});
-</script>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_tag("/food_items", method: "get") do %>
+      <%= label_tag(:q, "Search for food items by date:") %>
+      <%# text_field_tag(:q) %>
+      <div style='color:black'><%= date_field_tag :q, id: 'datepicker' %></div>
+      <%= submit_tag("Search") %>
+    <% end %>
 
-<% if current_user %>
-  <% @fooditems.each do |food| %>
-  <%= food.name.titleize %>
-  <ul>
-    <li><%= food.calories %> calories</li>
-    <li><%= food.sugar %> grams</li>
-    <li><%= food.sodium %> mg</li>
-    <li><%= food.protein %> g</li>
-  </ul>
-  <% end %>
-<% end %>
+        <% if current_user %>
+          <% @fooditems.each do |food| %>
+          <div style="color:white"><%= food.name.titleize %></div>
+          <ul style="color:white">
+            <li><%= food.calories %> calories</li>
+            <li><%= food.sugar %> grams</li>
+            <li><%= food.sodium %> mg</li>
+            <li><%= food.protein %> g</li>
+            <li><%= food.date_consumed %></li>
+          </ul>
+          <%= link_to 'Delete Item', food, method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
