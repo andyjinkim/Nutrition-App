@@ -3,14 +3,14 @@
     <h1 style="color:white">Food Item Index</h1>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= form_tag("/food_items", method: "get") do %>
-      <%= label_tag(:q, "Search for food items by date:") %>
-      <%# text_field_tag(:q) %>
+      <div style='color:white'><%= label_tag(:q, "Filter food items by date:") %></div>
       <div style='color:black'><%= date_field_tag :q, id: 'datepicker' %></div>
       <%= submit_tag("Search") %>
     <% end %>
 
+      <div class="scroll">
         <% if current_user %>
           <% @fooditems.each do |food| %>
           <div style="color:white"><%= food.name.titleize %></div>
@@ -25,7 +25,25 @@
           <% end %>
         <% end %>
       </div>
-      
+      </div>
+        <div class="col-md-8 daily">
+          Totals
+          <%calories = 0; sugar = 0; sodium = 0; protein = 0; @fooditems.each do |food| %>
+            <%calories = calories + food.calories%>
+            <%sugar = sugar + food.sugar%>
+            <%sodium = sodium + food.sodium%>
+            <%protein = protein + food.protein%>
+          <% end %> <br/>
+
+          <div class="">
+            Calories: <%= calories %><br>
+            Sugar: <%= sugar %> grams<br>
+            Sodium: <%= sodium %> milligrams<br>
+            Protein: <%= protein %> grams<br>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>

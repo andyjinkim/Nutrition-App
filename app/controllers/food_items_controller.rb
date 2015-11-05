@@ -3,7 +3,7 @@ before_action :set_fooditem, only: [:show, :edit, :update, :destroy]
 
   def index
     @user = current_user
-    Rails.logger.debug params[:q]
+    # Rails.logger.debug params[:q]
     if params[:q]
      @fooditems = @user.food_items.where(:consumed_date => params[:q].to_date)
    else
